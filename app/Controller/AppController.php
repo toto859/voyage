@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    
 
     public $components = array(
         'Session',
@@ -63,7 +64,7 @@ class AppController extends Controller {
             return true;
         }
 
-$this->redirect(array('controller' => 'voyages', 'action' => 'index'));
+
 
         // Default deny
        return false;

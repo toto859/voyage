@@ -16,7 +16,7 @@ App::uses('Debugger', 'Utility');
 	<a href="http://cakephp.org/changelogs/<?php echo Configure::version(); ?>"><?php echo __d('cake_dev', 'Read the changelog'); ?> </a>
 </p>
 <?php
-if (Configure::read('debug') > 0):
+if (Configure::read('debug') < 2):
 	Debugger::checkSecurityKeys();
 endif;
 ?>

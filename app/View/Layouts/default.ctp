@@ -21,6 +21,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+    
 	<title>
 		<?php echo $voyage ?>:
 		<?php echo $title_for_layout; ?>
@@ -38,8 +39,36 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($voyage, 'http://localhost/voyage/users_informations/add'); ?></h1>
+			<h1><?php echo $this->Html->link($voyage, 'http://localhost/voyage/users_informations/add'); ?>
+                       
+                        <div class="collapse navbar-right navbar-right">
+                        <ul class="nav navbar-right">
+			<li class="active">
+			<?php 
+			if ($this->Session->check('Auth.User')){
+			$username = $this->Session->read('Auth.User.username');
+			$userid = $this->Session->read('Auth.User.id');
+			$userrole = $this->Session->read('Auth.User.role');
+                        
+                         
+			echo $this->Html->link($username, array('controller' => 'users', 'action' => 'view', $userid));
+			echo '</li><li>';
+			echo $this->Html->link(__('Bye-bye'), array('controller' => 'users', 'action' => 'logout'));
+			}
+			else{
+			echo $this->Html->link(__('Connection'), array('controller' => 'users', 'action' => 'login'));
+			echo '</li><li>';
+			echo $this->Html->link(__('Inscription'), array('controller' => 'users', 'action' => 'add'));
+			}
+			?>
+			</li>
+			
+			
+		</ul><!-- /.nav navbar-nav -->
+	</div><!-- /.navbar-collapse -->
+                        </h1>
 		</div>
+            
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>

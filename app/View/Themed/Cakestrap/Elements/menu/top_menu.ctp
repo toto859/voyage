@@ -10,6 +10,39 @@
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
+			<li class="active">
+			<?php 
+			if ($this->Session->check('Auth.User')){
+			$username = $this->Session->read('Auth.User.username');
+			$userid = $this->Session->read('Auth.User.id');
+			$userrole = $this->Session->read('Auth.User.role');
+		
+			echo $this->Html->link($username, array('controller' => 'users', 'action' => 'view', $userid));
+			echo '</li><li>';
+			echo $this->Html->link(__('Bye-bye'), array('controller' => 'users', 'action' => 'logout'));
+			}
+			else{
+			echo $this->Html->link(__('Connection'), array('controller' => 'users', 'action' => 'login'));
+			echo '</li><li>';
+			echo $this->Html->link(__('Inscription'), array('controller' => 'users', 'action' => 'add'));
+			}
+			?>
+			</li>
+			
+			<!-- <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li><a href="#">Separated link</a></li>
+					<li><a href="#">One more separated link</a></li>
+				</ul>
+			</li> -->
+		</ul><!-- /.nav navbar-nav -->
+	</div><!-- /.navbar-collapse -->
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
 			<li class="active"><a href="#">Link</a></li>
 			<li><a href="#">Link</a></li>
 			<li class="dropdown">
